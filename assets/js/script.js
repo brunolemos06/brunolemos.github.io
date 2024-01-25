@@ -1,5 +1,25 @@
 'use strict';
 
+// dinamcally resize image
+
+// Function to resize the image dynamically
+function resizeImage(widthPercentage) {
+  var container = document.querySelector('.avatar-box');
+  var image = document.querySelector('.avatar-eu');
+
+  // Set the new width of the container
+  container.style.width = widthPercentage + '%';
+
+  // Make the image fill the container
+  image.style.width = '100%';
+}
+
+// entre 0 e 579 incluindo
+if (window.matchMedia("(max-width: 579px)").matches) { 
+  resizeImage(20);
+}
+
+
 
 
 // element toggle function
