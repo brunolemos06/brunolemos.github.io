@@ -2,14 +2,14 @@ vCard - Personal Portfolio
 
 # sidebar
 
-alt = Richard hanrick
+alt = Bruno Lemos
 Richard hanrick
 Web developer
 
 Show Contacts
 
 Email
-richard@example.com
+blemos@example.com
 
 Phone
 +1 (213) 352-2795
