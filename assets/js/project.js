@@ -2,6 +2,7 @@
 const projects = [
     {
         name: 'Bird Game',
+        type: 'games',
         img: [  
             'assets/images/projects/bird-game/bird-game(normal).png',
             'assets/images/projects/bird-game/bird-game(gameover).png',
@@ -17,6 +18,27 @@ const projects = [
             { title: "Difficulty", content: "The game progressively becomes more challenging as you collect more coins and increase your score. More enemies will spawn, and they may move faster, making it harder to avoid collisions." },
             { title: "Music and Sounds", content: "The game features background music and sound effects, adding to the overall gaming experience." },
             { title: "Overall", content: "Overall, 'Bird Game' offers a simple yet engaging gameplay experience where you can test your reflexes and aiming for the highest score possible while avoiding obstacles. It's a classic arcade-style game suitable for players of all ages." }
+        ]
+    },
+    {
+        name: 'Door RFID',
+        type: 'applications',
+        img: [  
+            'assets/images/projects/door-rfid/door-rfid-main.png',
+            'assets/images/projects/door-rfid/door-rfid-1.png',
+            'assets/images/projects/door-rfid/door-rfid-2.png',
+            'assets/images/projects/door-rfid/door-rfid-3.png',
+            'assets/images/projects/door-rfid/door-rfid-arq1.png',
+            'assets/images/projects/door-rfid/door-rfid-arq2.png',
+        ],
+        description: [
+            { title: "Objective", content: "The objective of this project is to create a door lock system that uses RFID tags to grant access to authorized users. The system consists of a door lock, an RFID reader, and an RFID tag. The RFID reader is connected to a microcontroller, which controls the door lock. The RFID tag is used to grant access to the user." },
+            { title: "Features", content: "The system has the following features:" },
+            { title: "", content: "- The system allows access to authorized users only. Unauthorized users are denied access." },
+            { title: "", content: "- The system can store multiple RFID tags, allowing multiple users to access the system.They can rename the tags to identify them easily." },
+            { title: "", content: "- The system can be configured in webapp and see the logs of the system." },
+            { title: "", content: "- We can add more modules to the system[doors] with ip" },
+            { title: "", content: "- To add a rfid tag, you need to go to the webapp and click on write tag, then you need to pass the tag on the reader and the tag will be added to the system." },
         ]
     }
 ];
@@ -144,13 +166,117 @@ function resetSection() {
 }
 
 
+
 const projectFromUrl = getQueryParam('name');
 
 // Call the fetchData function with the animal name from the URL
 if (projectFromUrl) {
     resetSection(projectFromUrl);
-    console.log(projectFromUrl);
+    
 } else {
     console.error('Project name not found in URL');
 }
 
+
+function fill_projects(filter){
+    console.log("filling projects");
+    // remove all projects
+    const prj_list = document.getElementsByClassName('project-list');
+    while(prj_list[0].firstChild){
+        prj_list[0].removeChild(prj_list[0].firstChild);
+    }
+
+    // <li class="project-item  active" data-filter-item data-category="applications">
+    //     <a href="#">
+  
+    //         <figure class="project-img">
+    //         <div class="project-item-icon-box">
+    //             <ion-icon name="eye-outline"></ion-icon>
+    //         </div>
+  
+    //         <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
+    //         </figure>
+  
+    //         <h3 class="project-title">Finance</h3>
+  
+    //         <p class="project-category">Applications</p>
+  
+    //     </a>
+    // </li>
+    projects.forEach(project => {
+        const li = document.createElement('li');
+        li.classList.add('project-item');
+        if(filter === 'all'){
+          li.classList.add('active');
+        }else if(filter === project.type){
+          li.classList.add('active');
+        }
+        li.setAttribute('data-filter-item', '');
+        li.setAttribute('data-category', project.type);
+  
+        const a = document.createElement('a');
+        a.href = 'index.html?name=' + project.name;
+  
+        const figure = document.createElement('figure');
+        figure.classList.add('project-img');
+  
+        const div = document.createElement('div');
+        div.classList.add('project-item-icon-box');
+  
+        const icon = document.createElement('ion-icon');
+        icon.name = 'eye-outline';
+  
+        const img = document.createElement('img');
+        img.src = project.img[0];
+        img.alt = 'fundo';
+        img.loading = 'lazy';
+  
+        const h3 = document.createElement('h3');
+        h3.classList.add('project-title');
+        h3.textContent = project.name;
+  
+        const p = document.createElement('p');
+        p.classList.add('project-category');
+        //put the first letter in caps
+        p.textContent = project.type.charAt(0).toUpperCase() + project.type.slice(1);
+  
+        figure.appendChild(div);
+        div.appendChild(icon);
+        figure.appendChild(img);
+        a.appendChild(figure);
+        a.appendChild(h3);
+        a.appendChild(p);
+        li.appendChild(a);
+        prj_list[0].appendChild(li);
+    });
+}
+// add event in all select items
+for (let i = 0; i < selectItems.length; i++) {
+    selectItems[i].addEventListener("click", function () {
+  
+      let selectedValue = this.innerText.toLowerCase();
+      selectValue.innerText = this.innerText;
+      elementToggleFunc(select);
+      fill_projects(selectedValue);
+      console.log("filling ?");
+    });
+}
+
+
+for (let i = 0; i < filterBtn.length; i++) {
+
+  filterBtn[i].addEventListener("click", function () {
+
+    let selectedValue = this.innerText.toLowerCase();
+    selectValue.innerText = this.innerText;
+    fill_projects(selectedValue);
+
+    lastClickedBtn.classList.remove("active");
+    this.classList.add("active");
+    lastClickedBtn = this;
+
+  });
+
+}
+
+fill_projects('all');
