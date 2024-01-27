@@ -117,6 +117,9 @@ function resetSection() {
         project2.classList.add('active');
         populatePage(projectFromUrl);
 
+        const headerp = document.getElementById('headerporftt');
+        // add 
+
     }else{
         const projectsection = document.getElementById('projectshow');
         projectsection.style.display = 'none';
@@ -134,6 +137,9 @@ function resetSection() {
         project.classList.remove('active');
         const project2 = document.getElementById('portfolio2');
         project2.classList.remove('active');
+
+
+
     }
 }
 

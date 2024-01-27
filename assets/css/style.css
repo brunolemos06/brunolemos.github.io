@@ -1256,7 +1256,11 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 @media (min-width: 450px) {
 
-
+  .main-content {
+    position: relative;
+    width: max-content;
+    margin: auto;
+  }
   /*-----------------------------------*\
     #SIDEBAR
   \*-----------------------------------*/
@@ -1421,7 +1425,11 @@ textarea.form-input::-webkit-resizer { display: none; }
  */
 
 @media (min-width: 580px) {
-
+  .main-content {
+    position: relative;
+    width: max-content;
+    margin: auto;
+  }
   /**
    * CUSTOM PROPERTY
    */
@@ -1719,7 +1727,11 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
 
-
+  .main-content {
+    position: relative;
+    width: max-content;
+    margin: auto;
+  }
 
   /**
    * SIDEBAR
@@ -1730,8 +1742,9 @@ textarea.form-input::-webkit-resizer { display: none; }
     gap: 30px 15px;
   }
 
-
-
+  .info_more-btn{
+    z-index: 2;
+  }
   /**
    * NAVBAR
    */
@@ -1810,7 +1823,7 @@ textarea.form-input::-webkit-resizer { display: none; }
  */
 
 @media (min-width: 1024px) {
-
+  
   /**
    * CUSTOM PROPERTY
    */
@@ -2073,7 +2086,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   transform: scale(1);
   transition: 1s;
   cursor: pointer;
-  z-index: 1;
+  z-index: 3;
 }
 
 .project-img{
@@ -2093,7 +2106,9 @@ textarea.form-input::-webkit-resizer { display: none; }
 }
 
 .headerportf{
-
+  /* horizontally */
+  display: flex;
+  
 }
 
 .btn_return{
@@ -2157,4 +2172,14 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .info22{
   width: 48%;
+}
+
+.title2{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1%;
+  height: 1%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 9999; /* Set a high z-index to ensure it's in front of other elements */
 }
