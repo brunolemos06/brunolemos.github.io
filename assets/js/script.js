@@ -81,7 +81,13 @@ const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
-select.addEventListener("click", function () { elementToggleFunc(this); });
+try {
+  select.addEventListener("click", function () { elementToggleFunc(this); });
+}
+catch (error) {
+  console.error(error);
+}
+
 
 // add event in all select items
 for (let i = 0; i < selectItems.length; i++) {
@@ -163,7 +169,6 @@ const pages = document.querySelectorAll("[data-page]");
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
-
     for (let i = 0; i < pages.length; i++) {
       if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
         pages[i].classList.add("active");
@@ -174,6 +179,16 @@ for (let i = 0; i < navigationLinks.length; i++) {
         navigationLinks[i].classList.remove("active");
       }
     }
+    // remove url and fix content
+    
+    window.history.replaceState({}, document.title, "/");
 
+
+    const projectsection = document.getElementById('projectshow');
+    projectsection.style.display = 'none';
+    const projectdiv = document.getElementById('projectslist');
+    projectdiv.style.display = 'block';
+    const projectName = document.getElementById('nameproject');
+    projectName.innerText = 'Portfolio';
   });
 }
