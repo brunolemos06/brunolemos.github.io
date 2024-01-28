@@ -40,7 +40,23 @@ const projects = [
             { title: "", content: "- We can add more modules to the system[doors] with ip" },
             { title: "", content: "- To add a rfid tag, you need to go to the webapp and click on write tag, then you need to pass the tag on the reader and the tag will be added to the system." },
         ]
-    }
+    },
+    {
+        "name": "AI Tetris",
+        "type": "games",
+        "img": [
+            "assets/images/projects/ai-tetris/ai-tetris-0.png",
+            "assets/images/projects/ai-tetris/presentation-2.png",
+            "assets/images/projects/ai-tetris/presentation-3.png",
+            "assets/images/projects/ai-tetris/presentation-4.png",
+            "assets/images/projects/ai-tetris/presentation-5.png",
+        ],
+        "video": "assets/images/projects/ai-tetris/ai-tetris.mp4",
+        "description": [
+            { title: "Overview", content: "The objective of this project is to create an AI that can play the game of Tetris. The AI will be able to play the game on its own, without any human intervention." },
+            { title: "Contributors", content: "This project was developed by me and João Amaral." },
+        ],
+    }   
 ];
 
 function getQueryParam(name) {
@@ -81,6 +97,7 @@ function populatePage(project) {
     // verify all img
     var allimages = projects[GameValid(project)].img;
     var description = projects[GameValid(project)].description;
+    var videodone = false;
     for (let i = 0; i < allimages.length; i++) {
         const img = document.createElement('img');
         img.classList.add('imgportfolio');
@@ -90,10 +107,25 @@ function populatePage(project) {
         if(i === 0){
             projectImages2.appendChild(img);
         }else{
+            // verify if video is present
+            if(projects[GameValid(project)].video !== undefined && videodone === false){
+                const video = document.createElement('video');
+                video.classList.add('videofolio');
+                video.src = projects[GameValid(project)].video;
+                video.alt = 'fundo';
+                video.loading = 'lazy';
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.playsinline = true;
+                projectImages.appendChild(video);
+                videodone = true;
+            }
             projectImages.appendChild(img);
         }
         console.log(allimages[i]);
     }
+
     // verify description
     description.forEach(info => {
         // Create elements
@@ -261,6 +293,5 @@ for (let i = 0; i < selectItems.length; i++) {
       fill_projects(selectedValue);
     });
 }
-
 
 fill_projects('all');

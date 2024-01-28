@@ -2183,3 +2183,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   z-index: 9999; /* Set a high z-index to ensure it's in front of other elements */
 }
+
+.videofolio {
+  width: 60vw; /* 100% of the viewport width */
+  height: 60vh; /* 100% of the viewport height */
+  
+  transition: var(--transition-1);
+  border-radius: 10px;
+}
