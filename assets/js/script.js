@@ -192,3 +192,18 @@ for (let i = 0; i < navigationLinks.length; i++) {
     projectName.innerText = 'Portfolio';
   });
 }
+
+let lastClickedBtn = filterBtn[0]; // Change const to let
+function activebtn(){
+    let selectedValue = this.innerText.toLowerCase();
+    selectValue.innerText = this.innerText;
+    fill_projects(selectedValue);
+
+    lastClickedBtn.classList.remove("active");
+    this.classList.add("active");
+    lastClickedBtn = this;
+    console.log("clicked");
+}
+for (let i = 0; i < filterBtn.length; i++) {
+  filterBtn[i].addEventListener("click", activebtn);
+}

@@ -250,6 +250,7 @@ function fill_projects(filter){
         prj_list[0].appendChild(li);
     });
 }
+
 // add event in all select items
 for (let i = 0; i < selectItems.length; i++) {
     selectItems[i].addEventListener("click", function () {
@@ -258,25 +259,8 @@ for (let i = 0; i < selectItems.length; i++) {
       selectValue.innerText = this.innerText;
       elementToggleFunc(select);
       fill_projects(selectedValue);
-      console.log("filling ?");
     });
 }
 
-
-for (let i = 0; i < filterBtn.length; i++) {
-
-  filterBtn[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    fill_projects(selectedValue);
-
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-
-  });
-
-}
 
 fill_projects('all');
